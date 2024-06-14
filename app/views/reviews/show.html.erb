@@ -3,4 +3,7 @@
   <p>説明：<%= @review.content %></p>
   <p>ユーザーネーム：<%= @review.user.name %></p>
   <p>投稿日：<%= @review.created_at.strftime('%Y/%m/%d') %></p>
+  <% if @review.user == current_user %>
+    <%= link_to "削除", review_path(@review), method: :delete %>
+  <% end %>
 </div>

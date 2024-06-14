@@ -1,7 +1,8 @@
 <% @reviews.each do |review| %>
   <div>
-    <p>タイトル：<%= review.title %></p>
+    <p>タイトル<%= review.title %></p>
     <p>説明：<%= review.content %></p>
     <p>ユーザーネーム：<%= review.user.name %></p>
+    <%= link_to "Show", review_path(review.id)%>
   </div>
 <% end %>
