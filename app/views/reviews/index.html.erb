@@ -1,5 +1,6 @@
 <% @reviews.each do |review| %>
   <div>
+    <p>投稿ユーザー画像：<%= image_tag review.user.get_profile_image(100,100) %></p>
     <p>タイトル<%= review.title %></p>
     <p>説明：<%= review.content %></p>
     <p>ユーザーネーム：<%= review.user.name %></p>
