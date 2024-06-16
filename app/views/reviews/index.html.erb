@@ -4,6 +4,6 @@
     <p>タイトル<%= review.title %></p>
     <p>説明：<%= review.content %></p>
     <p>ユーザーネーム：<%= review.user.name %></p>
-    <%= link_to "Show", review_path(review.id)%>
+    <p><%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %></p>
   </div>
 <% end %>
