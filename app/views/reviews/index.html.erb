@@ -7,3 +7,4 @@
     <p><%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %></p>
   </div>
 <% end %>
+<%= paginate reviews %>
