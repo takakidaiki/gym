@@ -1,0 +1,2 @@
+class FitnessGym < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+module FitnessGymsHelper
+end

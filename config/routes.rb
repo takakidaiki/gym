@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'fitness_gyms/index'
+  get 'fitness_gyms/show'
   get 'users/unsubscribe'
   get 'users/withdraw'
   devise_for :users
