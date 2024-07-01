@@ -4,6 +4,16 @@
   <p>投稿ユーザー画像：<%= image_tag @review.user.get_profile_image(100,100) %></p>
   <p>ユーザーネーム：<%= @review.user.name %></p>
   <p>投稿日：<%= @review.created_at.strftime('%Y/%m/%d') %></p>
+  <div id="post_raty"></div>
+  <script>
+         let elem = document.querySelector('#post_raty');
+           // scriptファイルをどのidの部分に配置するかを指定
+         let opt = {
+           score: <%= reviewのスコアを持ってくるrubyの記述 %>
+          };
+          
+        raty(elem,opt);
+  </script>
   <% if @review.user == current_user %>
     <%= link_to "編集", edit_review_path(@review) %>
   <% end %>
