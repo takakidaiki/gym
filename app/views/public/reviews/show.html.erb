@@ -9,10 +9,12 @@
          let elem = document.querySelector('#post_raty');
            // scriptファイルをどのidの部分に配置するかを指定
          let opt = {
-           score: <%= reviewのスコアを持ってくるrubyの記述 %>
-          };
-          
-        raty(elem,opt);
+           starOn: "<%= asset_path('star-on.png') %>",
+           starOff: "<%= asset_path('star-off.png') %>",
+           starHalf: "<%= asset_path('star-half.png') %>",
+           score: "<%= post_raty %>",
+           readOnly: true,
+         raty(elem,opt);
   </script>
   <% if @review.user == current_user %>
     <%= link_to "編集", edit_review_path(@review) %>
