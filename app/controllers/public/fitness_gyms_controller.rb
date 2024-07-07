@@ -6,4 +6,8 @@ class Public::FitnessGymsController < ApplicationController
 
   def show
   end
+  
+  def new
+    @fitness_gym = FitnessGym.
+  end
 end

@@ -1,0 +1,5 @@
+<%= form_with model: @tag,url: admin_tags_path do |f| %>
+  <h4>tag</h4>
+  <%= f.text_field :name %>
+  <%= f.submit '投稿' %>
+<% end %>

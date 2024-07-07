@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:destroy]
-    resources :tags, only: [:index, :create, :edit, :update]
+    resources :tags, only: [:index, :create, :edit, :update, :new]
   end
 
   scope module: :public do
-    resources :fitness_gyms, only: [:show, :index, :create]
+    resources :fitness_gyms, only: [:show, :index, :create, :new]
     resources :reviews, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
       resources :review_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
