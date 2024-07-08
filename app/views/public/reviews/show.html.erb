@@ -12,8 +12,9 @@
            starOn: "<%= asset_path('star-on.png') %>",
            starOff: "<%= asset_path('star-off.png') %>",
            starHalf: "<%= asset_path('star-half.png') %>",
-           score: "<%= post_raty %>",
-           readOnly: true,
+           score: "<%= @review.star %>",
+           readOnly: true
+         };
          raty(elem,opt);
   </script>
   <% if @review.user == current_user %>
