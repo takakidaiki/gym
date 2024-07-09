@@ -1,7 +1,6 @@
 class Admin::TagsController < ApplicationController
 
   def index
-    @tag = Tag.new
     @tags = Tag.all
   end
 
@@ -16,7 +15,7 @@ class Admin::TagsController < ApplicationController
   end
 
   def edit
-    @tag = tag.find(params[:id])
+    @tag = Tag.find(params[:id])
   end
 
   def update

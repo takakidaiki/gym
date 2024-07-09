@@ -15,3 +15,8 @@
       %>
     <% end %>
 
+
+<% @fitness_gyms.each do |fitness_gym| %>
+  <p><%= fitness_gym.content %></p>
+  <p>Tags: <%= fitness_gym.tags.pluck(:name).join(",") %></p>
+<% end %>
