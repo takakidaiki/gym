@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   private
 
   def configure_authentication
+    
     if admin_controller?
       authenticate_admin!
     else

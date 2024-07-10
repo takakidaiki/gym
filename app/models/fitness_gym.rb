@@ -1,5 +1,5 @@
 class FitnessGym < ApplicationRecord
-  belongs_to :user
+  #belongs_to :user
   has_many :gym_tags, dependent: :destroy
   has_many :tags, through: :gym_tags
   has_many :reviews, dependent: :destroy

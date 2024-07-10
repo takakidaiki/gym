@@ -19,7 +19,7 @@ class Admin::TagsController < ApplicationController
   end
 
   def update
-    @tag = tag.find(params[:id])
+    @tag = Tag.find(params[:id])
     tag_names = params[:tag][:tag_names]
     if @tag.update(tag_params)
       if tag_names.present?

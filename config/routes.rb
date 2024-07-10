@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin do
-    get 'gym/new'
-    get 'gym/index'
-    get 'gym/edit'
+    get 'gyms/new'
+    get 'gyms/index'
+    get 'gyms/edit'
   end
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:destroy]
     resources :tags, only: [:index, :create, :edit, :update, :new]
+    resources :fitness_gyms, only: [:new, :index, :edit, :create, :update]
   end
 
   scope module: :public do
