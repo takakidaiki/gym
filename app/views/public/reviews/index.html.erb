@@ -6,7 +6,20 @@
     <p>タイトル<%= review.title %></p>
     <p>説明：<%= review.content %></p>
     <p>ユーザーネーム：<%= review.user.name %></p>
+    <div id="post_raty"></div>
+      <script>
+             let elem = document.querySelector('#post_raty');
+               // scriptファイルをどのidの部分に配置するかを指定
+             let opt = {
+               starOn: "<%= asset_path('star-on.png') %>",
+               starOff: "<%= asset_path('star-off.png') %>",
+               starHalf: "<%= asset_path('star-half.png') %>",
+               score: "<%= review.star %>",
+               readOnly: true
+             };
+             raty(elem,opt);
+      </script>
     <p><%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %></p>
-    
+
   </div>
 <% end %>

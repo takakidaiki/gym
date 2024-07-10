@@ -16,6 +16,24 @@
   <h4>説明</h4>
   <%= f.text_area :content %>
 
+  <div id="rating-form">
+    <label>評価：</label>
+    <%= f.hidden_field :star, :value => 'score' %>
+  </div>
+
+  <script>
+         let elem = document.querySelector('#rating-form');
+           // scriptファイルをどのidの部分に配置するかを指定
+         let opt = {
+           starOn: "<%= asset_path('star-on.png') %>",
+           starOff: "<%= asset_path('star-off.png') %>",
+           starHalf: "<%= asset_path('star-half.png') %>",
+           score: "<%= @review.star %>",
+
+         };
+         raty(elem,opt);
+  </script>
+
   <%= f.submit '保存' %>
 
 <% end %>

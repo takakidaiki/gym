@@ -5,6 +5,7 @@ class Public::FitnessGymsController < ApplicationController
   end
 
   def show
+    @fitness_gym = FitnessGym.find(params[:])
   end
 
   def new

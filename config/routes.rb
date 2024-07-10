@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:destroy]
-    resources :tags, only: [:index, :create, :edit, :update, :new]
-    resources :fitness_gyms, only: [:new, :index, :edit, :create, :update]
+    resources :tags, only: [:index, :create, :edit, :update, :new, :destroy]
+    resources :fitness_gyms, only: [:new, :index, :edit, :create, :update, :destroy]
   end
 
   scope module: :public do

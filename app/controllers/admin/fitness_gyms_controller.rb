@@ -29,7 +29,13 @@ class Admin::FitnessGymsController < ApplicationController
     end
   end
   
-   def fitness_gym_params
-      params.require(:fitness_gym).permit(:content, tag_ids: [])
-   end
+  def destroy
+    fitness_gym = FitnessGym.find(params[:id])
+    fitness_gym.destroy
+    redirect_to '/admin/fitness_gyms'
+  end
+  
+  def fitness_gym_params
+    params.require(:fitness_gym).permit(:content, tag_ids: [])
+  end
 end

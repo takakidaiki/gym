@@ -1,5 +1,5 @@
 <%= form_with model: @fitness_gym,url: admin_fitness_gyms_path do |f| %>
-<%= f.text_field :content %>
+<%= f.text_field :name %>
   <div class="check_box">
     <span>タグ</span>
     <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
