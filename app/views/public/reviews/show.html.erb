@@ -6,16 +6,21 @@
   <p>投稿日：<%= @review.created_at.strftime('%Y/%m/%d') %></p>
   <div id="post_raty"></div>
   <script>
-         let elem = document.querySelector('#post_raty');
-           // scriptファイルをどのidの部分に配置するかを指定
-         let opt = {
-           starOn: "<%= asset_path('star-on.png') %>",
-           starOff: "<%= asset_path('star-off.png') %>",
-           starHalf: "<%= asset_path('star-half.png') %>",
-           score: "<%= @review.star %>",
-           readOnly: true
-         };
-         raty(elem,opt);
+    $(document).on('turbolinks:load', function() {
+      // scriptファイルをどのidの部分に配置するかを指定
+      document.querySelector('#post_raty').innerHTML = '';
+      raty(document.querySelector('#post_raty'),
+        {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          half: true,
+          readOnly: true,
+          score: "<%= @review.star %>",
+        }
+      );
+    });
+
   </script>
   <% if @review.user == current_user %>
     <%= link_to "編集", edit_review_path(@review) %>
