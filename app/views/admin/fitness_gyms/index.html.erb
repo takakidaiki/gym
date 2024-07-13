@@ -1,3 +1,5 @@
 <% @fitness_gyms.each do |fitness_gym| %>
     <%= fitness_gym.name %>
+    <%= link_to '編集', edit_admin_fitness_gym_path(fitness_gym) %>
+    <%= link_to '削除', admin_fitness_gym_path(fitness_gym), method: :delete %>
 <% end %>

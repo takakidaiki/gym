@@ -1,16 +1,25 @@
+<% if @fitness_gym.errors.any? %>
+  <%= @fitness_gym.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @fitness_gym.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <%= form_with model: @fitness_gym,url: admin_fitness_gyms_path do |f| %>
-<%= f.text_field :name %>
-  <div class="check_box">
-    <span>タグ</span>
-    <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-     <div>
-       <%= tag.label do %>
-         <%= tag.check_box %>
-         <%= tag.text %>
+    <%= f.text_field :name %>
+      <div class="check_box">
+        <span>タグ</span>
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+         <div>
+           <%= tag.label do %>
+             <%= tag.check_box %>
+             <%= tag.text %>
+           <% end %>
+         </div>
        <% end %>
-     </div>
-   <% end %>
-  </div>
-  <%= f.submit '投稿' %>
+      </div>
+    <%= f.text_area :content %>
+    <%= f.submit '投稿' %>
 <% end %>
 
