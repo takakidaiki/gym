@@ -1,8 +1,8 @@
 <h1>マップ</h1>
 <%= form_tag(fitness_gyms_path, :method => "get") do %>
-  <%= text_field_tag :search %> 
-  <%= submit_tag "Search" ,:username => nil ,class: "button is-info"%> 
-<% end %> 
+  <%= text_field_tag :search %>
+  <%= submit_tag "Search" ,:username => nil ,class: "button is-info"%>
+<% end %>
 
 <%= form_with(model: @fitness_gym) do |form| %>
   <div class="check_box">
@@ -25,6 +25,7 @@
 
 
 <% @fitness_gyms.each do |fitness_gym| %>
+　<p><%= fitness_gym.name %></p>
   <p><%= fitness_gym.content %></p>
   <p>Tags: <%= fitness_gym.tags.pluck(:name).join(",") %></p>
 <% end %>
