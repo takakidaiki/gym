@@ -47,6 +47,6 @@ class Public::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:title, :content, :star)
+    params.require(:review).permit(:title, :content, :star, :fitness_gym_id, :user_id)
   end
 end

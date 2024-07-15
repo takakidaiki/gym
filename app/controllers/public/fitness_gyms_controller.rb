@@ -2,6 +2,8 @@ class Public::FitnessGymsController < ApplicationController
   def index
     #@fitness_gyms = FitnessGym.all
     @fitness_gyms = params[:tag_id].present? ? Tag.find(params[:tag_id]).fitness_gyms : FitnessGym.all
+    @reviews = Review.all
+    @users = current_user.id
   end
 
   def show
