@@ -1,31 +1,19 @@
 <h1>マップ</h1>
-<%= form_tag(fitness_gyms_path, :method => "get") do %>
-  <%= text_field_tag :search %>
-  <%= submit_tag "Search" ,:username => nil ,class: "button is-info"%>
+<%= form_with(url: fitness_gyms_path, method: :get) do |f| %>
+  <%= f.text_field :search, value: params[:search] %>
+  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+    <div>
+      <%= tag.label do %>
+        <%= tag.check_box checked: params[:tag_ids]&.map(&:to_i)&.include?(tag.object.id) %>
+      <% end %>
+      <%= tag.object.name%>
+    </div>
+  <% end %>
+  <%= f.submit "Search" ,:username => nil, class: "button is-info"%>
 <% end %>
-
-<%= form_with(model: @fitness_gym) do |form| %>
-  <div class="check_box">
-    <span>タグ</span>
-    <%= form.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-      <div>
-        <%= tag.label do %>
-          <%= tag.check_box %>
-        <% end %>
-
-        <%= tag.object.name%>
-      </div>
-    <% end %>
-  </div>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
-
-
 
 <% @fitness_gyms.each do |fitness_gym| %>
-　<p><%= fitness_gym.name %></p>
+　<p><%= link_to fitness_gym.name, fitness_gym_path(fitness_gym) %></p>
   <p><%= fitness_gym.content %></p>
   <p>Tags: <%= fitness_gym.tags.pluck(:name).join(",") %></p>
 <% end %>

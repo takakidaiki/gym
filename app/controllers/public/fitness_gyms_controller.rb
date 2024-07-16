@@ -1,13 +1,18 @@
 class Public::FitnessGymsController < ApplicationController
   def index
-    #@fitness_gyms = FitnessGym.all
-    @fitness_gyms = params[:tag_id].present? ? Tag.find(params[:tag_id]).fitness_gyms : FitnessGym.all
+    @fitness_gyms = FitnessGym.includes(:gym_tags)
+    @fitness_gyms = @fitness_gyms.where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
+    if params[:tag_ids].present? && params[:tag_ids].reject(&:blank?).any?
+      @fitness_gyms = @fitness_gyms.where('gym_tags.tag_id': params[:tag_ids]) 
+    end
     @reviews = Review.all
     @users = current_user.id
   end
 
   def show
     @fitness_gym = FitnessGym.find(params[:id])
+    @reviews = @fitness_gym.reviews
+    @review = Review.new
   end
 
   def new

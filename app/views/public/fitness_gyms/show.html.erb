@@ -1,2 +1,39 @@
 <h1>FitnessGyms#show</h1>
 <p>Find me in app/views/fitness_gyms/show.html.erb</p>
+
+<%= @fitness_gym.inspect %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <%= form_with(model: @review) do |f| %>
+        <%= f.hidden_field :fitness_gym_id, value: @fitness_gym.id %>
+
+        <div class="mb-2">
+          <%= f.label :title %>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+
+        <div class="mb-2">
+          <%= f.label :content %>
+          <%= f.text_area :content, rows: 5, class: "form-control" %>
+        </div>
+
+        <div class="mb-2">
+          <%= f.select :star, (1..5).to_a %>
+        </div>
+
+        <div class="mb-2">
+          <%= f.submit "review", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<% if @reviews.any? %>
+  <% @reviews.each do |review| %>
+    <%= review.inspect %>
+  <% end %>
+<% end %>
