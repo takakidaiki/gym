@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
+  root to: "public/homes#top"
+  get "/homes/about" => "public/homes#about", as: "about"
+  devise_for :admin, skip: [:registrations, :password], controllers: {
+    sessions: 'admin/sessions'
+  }
+  
+  devise_for :users, controllers: {
+    sessions: 'public/sessions',
+    registrations: 'public/registrations',
+  }
+  
   namespace :admin do
     get 'gyms/new'
     get 'gyms/index'
     get 'gyms/edit'
   end
-  devise_for :admin, skip: [:registrations, :password], controllers: {
-    sessions: 'admin/sessions'
-  }
+
 
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
@@ -16,15 +25,14 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :fitness_gyms, only: [:show, :index, :create, :new]
-    resources :reviews, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
+    resources :fitness_gyms, only: [:show, :index, :create, :new] do
       resources :review_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
     end
+    
+    resources :reviews, only: [:new, :create, :index, :show, :edit, :destroy, :update]
     get 'users/unsubscribe'
-    get "/homes/about" => "homes#about", as: "about"
-    root to: "homes#top"
-    devise_for :users
+   
     resources :users, only: [:show, :index, :edit, :update, :destroy]
   end
 

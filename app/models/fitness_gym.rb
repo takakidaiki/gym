@@ -9,6 +9,10 @@ class FitnessGym < ApplicationRecord
   validates :content, presence: true
 
   accepts_nested_attributes_for :tags
+  
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
 
   def save_tags(savebook_tags)
     # 現在のユーザーの持っているskillを引っ張ってきている
