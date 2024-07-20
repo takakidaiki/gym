@@ -1,22 +1,19 @@
-<h1>FitnessGyms#show</h1>
-<p>Find me in app/views/fitness_gyms/show.html.erb</p>
 
-<%= @fitness_gym.inspect %>
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <%= form_with(model: @fitness_gym) do |f| %>
+  <h1>ジム詳細</h1>
+
+      <%= form_with(model: @review) do |f| %>
         <%= f.hidden_field :fitness_gym_id, value: @fitness_gym.id %>
 
-        <div class="mb-2">
+        <div class="mb-2 row">
           <%= f.label :title %>
-          <%= f.text_field :title, class: "form-control" %>
+          <%= f.text_field :title, class: "form-control col-6" %>
         </div>
 
-        <div class="mb-2">
+        <div class="mb-2 row">
           <%= f.label :content %>
-          <%= f.text_area :content, rows: 5, class: "form-control" %>
+          <%= f.text_area :content, rows: 5, class: "form-control col-6" %>
         </div>
 
         <div class="mb-2">
@@ -34,7 +31,8 @@
                 starOff: "<%= asset_path('star-off.png') %>",
                 starHalf: "<%= asset_path('star-half.png') %>",
                 half: true,
-                score: "<%= @review.star %>",
+                scoreName: 'review[star]'
+
               }
             );
           });
@@ -44,9 +42,8 @@
           <%= f.submit "review", class: "btn btn-primary" %>
         </div>
       <% end %>
-    </div>
-  </div>
-</div>
+
+
 
 
 <% if @reviews.any? %>
@@ -77,13 +74,13 @@
       <% end %>
       <% if @review.favorited_by?(current_user) %>
         <p>
-          <%= link_to fitness_gym_favorite_path(review), method: :delete do %>
+          <%= link_to review_favorite_path(review), method: :delete do %>
             ♥<%= review.favorites.count %> いいね
           <% end %>
         </p>
         <% else %>
         <p>
-          <%= link_to fitness_gym_favorite_path(review), method: :post do %>
+          <%= link_to review_favorite_path(review), method: :post do %>
             ♡<%= review.favorites.count %> いいね
           <% end %>
         </p>
@@ -91,9 +88,9 @@
     </div>
 
     <div>
-      <p>コメント件数：<%= @review.review_comments.count %></p>
-      <% @review.review_comments.each do |review_comment| %>
-        <p><%= image_tag review_comment.user.get_profile_image(100,100) %></p>
+      <p>コメント件数：<%= review.review_comments.count %></p>
+      <% review.review_comments.each do |review_comment| %>
+        <p><%= image_tag review_comment.user.get_profile_image(30,30) %></p>
         <%= review_comment.user.name %>
         <%= review_comment.created_at.strftime('%Y/%m/%d') %><%= review_comment.comment %>
         <% if review_comment.user == current_user %>
@@ -102,10 +99,12 @@
       <% end %>
     </div>
     <div>
-      <%= form_with model: [@fitness_gym, @review_comment] do |f| %>
+      <%= form_with model: @review_comment,url: review_review_comments_path(review.id) do |f| %>
         <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
         <%= f.submit "送信する" %>
       <% end %>
     </div>
   <% end %>
 <% end %>
+
+</div>

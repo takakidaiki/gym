@@ -20,17 +20,17 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:destroy]
-    resources :tags, only: [:index, :create, :edit, :update, :new, :destroy]
-    resources :fitness_gyms, only: [:new, :index, :edit, :create, :update, :destroy]
+    resources :tags, except: [:show]
+    resources :fitness_gyms, except: [:show]
   end
 
   scope module: :public do
-    resources :fitness_gyms, only: [:show, :index, :create, :new] do
+    resources :fitness_gyms, only: [:show, :index, :create, :new] 
+    
+    resources :reviews do
       resources :review_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
     end
-    
-    resources :reviews, only: [:new, :create, :index, :show, :edit, :destroy, :update]
     get 'users/unsubscribe'
    
     resources :users, only: [:show, :index, :edit, :update, :destroy]

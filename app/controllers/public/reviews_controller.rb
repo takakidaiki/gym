@@ -8,9 +8,9 @@ class Public::ReviewsController < ApplicationController
     @review.user_id = current_user.id
     if @review.save
       flash[:notice] = "投稿に成功しました。"
-      redirect_to reviews_path
+      redirect_to fitness_gym_path(@review.fitness_gym_id)
     else
-      flash.now[:alert] = "投稿に失敗しました。" 
+      flash.now[:alert] = "投稿に失敗しました。"
       render :new
     end
   end

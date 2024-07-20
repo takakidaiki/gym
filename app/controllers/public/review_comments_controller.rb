@@ -4,7 +4,7 @@ class Public::ReviewCommentsController < ApplicationController
     comment = current_user.review_comments.new(review_comment_params)
     comment.review_id = review.id
     comment.save
-    redirect_to fitness_gym_path(fitness_gym)
+    redirect_to fitness_gym_path(review.fitness_gym_id)
   end
   
   def destroy

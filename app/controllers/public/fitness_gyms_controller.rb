@@ -25,7 +25,7 @@ class Public::FitnessGymsController < ApplicationController
   def create
     @fitness_gym = FitnessGym.new(fitness_gym_params)
     @fitness_gym.save
-    redirect_to fitness_gyms_path
+    redirect_to fitness_gym_path
   end
 
   def fitness_gym_params
