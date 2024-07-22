@@ -1,4 +1,4 @@
-<%= form_with model: @fitness_gym,url: admin_fitness_gyms_path do |f| %>
+<%= form_with model: @fitness_gym,url: admin_fitness_gym_path, method: :patch do |f| %>
 <%= f.text_field :name %>
   <div class="check_box">
     <span>タグ</span>
@@ -11,7 +11,8 @@
      </div>
    <% end %>
   </div>
+  <%= f.text_area :content %>
   <%= f.submit '投稿' %>
   <%= link_to '一覧', admin_fitness_gyms_path(f) %>
-  <%= link_to '削除', admin_fitness_gym_path(f), method: :delete %>
+  <%= link_to '削除', admin_fitness_gym_path(@fitness_gym), method: :delete %>
 <% end %>

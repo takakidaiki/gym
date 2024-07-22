@@ -9,13 +9,6 @@ Rails.application.routes.draw do
     sessions: 'public/sessions',
     registrations: 'public/registrations',
   }
-  
-  namespace :admin do
-    get 'gyms/new'
-    get 'gyms/index'
-    get 'gyms/edit'
-  end
-
 
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'

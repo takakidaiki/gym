@@ -3,13 +3,12 @@ class FitnessGym < ApplicationRecord
   has_many :gym_tags, dependent: :destroy
   has_many :tags, through: :gym_tags
   has_many :reviews, dependent: :destroy
-  has_many :favorites, dependent: :destroy
-  
+
   validates :name, presence: true
   validates :content, presence: true
 
   accepts_nested_attributes_for :tags
-  
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end

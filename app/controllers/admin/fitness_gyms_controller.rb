@@ -22,8 +22,8 @@ class Admin::FitnessGymsController < ApplicationController
 
   def update
     @fitness_gym = FitnessGym.find(params[:id])
-    if @fitness_gym.update(fitness_gym.params)
-      redirect_to admin_fitness_gym_path(@fitness_gym.id)
+    if @fitness_gym.update(fitness_gym_params)
+      redirect_to edit_admin_fitness_gym_path(@fitness_gym)
     else
       render :edit
     end
@@ -34,6 +34,8 @@ class Admin::FitnessGymsController < ApplicationController
     fitness_gym.destroy
     redirect_to '/admin/fitness_gyms'
   end
+  
+  private
 
   def fitness_gym_params
     params.require(:fitness_gym).permit(:name, :content, tag_ids: [])

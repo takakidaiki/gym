@@ -14,3 +14,5 @@ Tag.create([
     { name: '公営ジム'},
     { name: '会員制ジム'},
     ])
+
+Admin.create!(name: "test", password: "password")

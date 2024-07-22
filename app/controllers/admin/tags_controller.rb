@@ -26,7 +26,7 @@ class Admin::TagsController < ApplicationController
         tags = params[:tag][:tag_names].split("\n").map(&:strip).uniq
         create_or_update_tags(@tag, tags)
       end
-      redirect_to tag_path(@tag), success: 'ポストを更新しました'
+      redirect_to edit_admin_tag_path(@tag), success: 'ポストを更新しました'
     else
       flash.now[:danger] = 'ポストを更新できませんでした'
       render :edit
@@ -36,7 +36,7 @@ class Admin::TagsController < ApplicationController
   def new
     @tag = Tag.new
   end
-  
+
   def destroy
     tag = Tag.find(params[:id])
     tag.destroy
