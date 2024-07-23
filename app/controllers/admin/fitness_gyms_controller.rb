@@ -1,4 +1,6 @@
 class Admin::FitnessGymsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def new
     @fitness_gym = FitnessGym.new
   end

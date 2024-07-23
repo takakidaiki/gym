@@ -1,4 +1,6 @@
 class Public::ReviewsController < ApplicationController
+  before_action :authenticate_user!, except: [:top, :about], unless: :admin_controller?
+  
   def new
     @review = Review.new
   end
@@ -31,7 +33,7 @@ class Public::ReviewsController < ApplicationController
   def destroy
     review = Review.find(params[:id])
     review.destroy
-    redirect_to '/reviews'
+    redirect_to '/fitness_gyms'
   end
 
   def update

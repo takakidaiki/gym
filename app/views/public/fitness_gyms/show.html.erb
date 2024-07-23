@@ -1,7 +1,7 @@
 
 
 <div class="container">
-  <h1>ジム詳細</h1>
+  <h1><%= @fitness_gym.name %></h1>
 
       <%= form_with(model: @review) do |f| %>
         <%= f.hidden_field :fitness_gym_id, value: @fitness_gym.id %>

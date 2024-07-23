@@ -1,4 +1,6 @@
 class Public::FitnessGymsController < ApplicationController
+  before_action :authenticate_user!, except: [:top, :about], unless: :admin_controller?
+  
   def index
     @fitness_gyms = FitnessGym.includes(:gym_tags)
     @fitness_gyms = @fitness_gyms.where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
@@ -6,7 +8,6 @@ class Public::FitnessGymsController < ApplicationController
       @fitness_gyms = @fitness_gyms.where('gym_tags.tag_id': params[:tag_ids])
     end
     @reviews = Review.all
-    @users = current_user.id
   end
 
   def show
