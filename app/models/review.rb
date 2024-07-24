@@ -6,6 +6,7 @@ class Review < ApplicationRecord
 
   validates :title, presence: true
   validates :content, presence: true
+  validates :star, presence: true
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)

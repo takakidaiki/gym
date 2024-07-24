@@ -1,6 +1,6 @@
 class Public::ReviewsController < ApplicationController
   before_action :authenticate_user!, except: [:top, :about], unless: :admin_controller?
-  
+
   def new
     @review = Review.new
   end
@@ -13,7 +13,11 @@ class Public::ReviewsController < ApplicationController
       redirect_to fitness_gym_path(@review.fitness_gym_id)
     else
       flash.now[:alert] = "投稿に失敗しました。"
-      render :new
+      @fitness_gym = FitnessGym.find(params[:review][:fitness_gym_id])
+      @reviews = @fitness_gym.reviews
+      @review_comment = ReviewComment.new
+      @review.user_id = current_user.id
+      render "public/fitness_gyms/show"
     end
   end
 

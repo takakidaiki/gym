@@ -1,4 +1,12 @@
 <div>
+  <% if @review.errors.any? %>
+    <%= @review.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+　<% end %>
   <p>タイトル：<%= @review.title %></p>
   <p>説明：<%= @review.content %></p>
   <p>投稿ユーザー画像：<%= image_tag @review.user.get_profile_image(100,100) %></p>
