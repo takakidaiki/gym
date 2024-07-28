@@ -40,6 +40,6 @@ class Admin::FitnessGymsController < ApplicationController
   private
 
   def fitness_gym_params
-    params.require(:fitness_gym).permit(:name, :content, tag_ids: [])
+    params.require(:fitness_gym).permit(:name, :content, :address, tag_ids: [])
   end
 end

@@ -1,4 +1,3 @@
-<h1>マップ</h1>
 <%= form_with(url: fitness_gyms_path, method: :get) do |f| %>
   <%= f.text_field :search, value: params[:search] %>
   <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
@@ -17,3 +16,9 @@
   <p><%= fitness_gym.content %></p>
   <p>Tags: <%= fitness_gym.tags.pluck(:name).join(",") %></p>
 <% end %>
+
+<div class="container">
+  <div id="map" style="width: 100%; height: calc(100vh - 88px - 179px);"></div>
+</div>
+
+<%= javascript_pack_tag 'fitness_gym', 'data-turbolinks-track': 'reload' %>

@@ -1,25 +1,43 @@
-<% if @fitness_gym.errors.any? %>
-  <%= @fitness_gym.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @fitness_gym.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-<%= form_with model: @fitness_gym,url: admin_fitness_gyms_path do |f| %>
-    <%= f.text_field :name %>
-      <div class="check_box">
-        <span>タグ</span>
-        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-         <div>
-           <%= tag.label do %>
-             <%= tag.check_box %>
-             <%= tag.text %>
-           <% end %>
-         </div>
-       <% end %>
-      </div>
-    <%= f.text_area :content %>
-    <%= f.submit '投稿' %>
-<% end %>
+<div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">フィットネスジム投稿</h5>
+      <div class="form-body p-4">
+        <% if @fitness_gym.errors.any? %>
+          <ul class="alert alert-danger" role="alert">
+            <h6 class="alert-heading">
+              <%= @fitness_gym.errors.count %>件のエラーが発生しました
+            </h6>
+            <% @fitness_gym.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <%= form_with model: @fitness_gym,url: admin_fitness_gyms_path do |f| %>
+            <%= f.text_field :name, class: "form-control", placeholder: "ジム名" %>
+              <div class="check_box">
+                <span>タグ</span>
+                <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+                 <div>
+                   <%= tag.label do %>
+                     <%= tag.check_box %>
+                     <%= tag.text %>
+                   <% end %>
+                 </div>
+               <% end %>
+              </div>
+            <div class="input-group mb-3 mt-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-tenge-sign"></i></span>
+              </div>
+              <%= text_field_tag :zipcode, nil, class: "form-control", placeholder: "郵便番号" %>
+            </div>
+            <div class="input-group mb-3 mt-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+              </div>
+              <%= f.text_field :address, class: "form-control", placeholder: "住所" %>
+            </div>
+            <%= f.text_area :content, class: "form-control", placeholder: "ジム説明" %>
+            <%= f.submit '投稿' %>
+        <% end %>
 

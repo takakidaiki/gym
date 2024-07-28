@@ -2,12 +2,26 @@ class Public::FitnessGymsController < ApplicationController
   before_action :authenticate_user!, except: [:top, :about], unless: :admin_controller?
   
   def index
-    @fitness_gyms = FitnessGym.includes(:gym_tags)
-    @fitness_gyms = @fitness_gyms.where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
-    if params[:tag_ids].present? && params[:tag_ids].reject(&:blank?).any?
-      @fitness_gyms = @fitness_gyms.where('gym_tags.tag_id': params[:tag_ids])
+    
+    
+    respond_to do |format|
+      format.html do
+        @fitness_gyms = FitnessGym.includes(:gym_tags)
+        @fitness_gyms = @fitness_gyms.where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
+        if params[:tag_ids].present? && params[:tag_ids].reject(&:blank?).any?
+          @fitness_gyms = @fitness_gyms.where('gym_tags.tag_id': params[:tag_ids])
+        end
+        @reviews = Review.all
+      end
+      format.json do
+        # こちらが地図で扱う内容
+        @fitness_gyms = FitnessGym.includes(:gym_tags)
+        @fitness_gyms = @fitness_gyms.where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
+        if params[:tag_ids].present? && params[:tag_ids].reject(&:blank?).any?
+          @fitness_gyms = @fitness_gyms.where('gym_tags.tag_id': params[:tag_ids])
+        end
+      end
     end
-    @reviews = Review.all
   end
 
   def show
@@ -30,6 +44,6 @@ class Public::FitnessGymsController < ApplicationController
   end
 
   def fitness_gym_params
-      params.require(:fitness_gym).permit(tag_ids: [])
+      params.require(:fitness_gym).permit(:address, tag_ids: [])
   end
 end
