@@ -1,24 +1,25 @@
-<%= form_with(url: fitness_gyms_path, method: :get) do |f| %>
-  <%= f.text_field :search, value: params[:search] %>
-  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-    <div>
-      <%= tag.label do %>
-        <%= tag.check_box checked: params[:tag_ids]&.map(&:to_i)&.include?(tag.object.id) %>
+<div class="row no-gutters">
+  <div class="col-md-2 mx-2 shadow-lg rounded px-0 my-5">
+    <h5 class="text-dark bg-light p-4 mb-0">検索</h5>
+    <div class="form-body p-4">
+      <%= form_with(url: fitness_gyms_path, method: :get) do |f| %>
+        <%= f.text_field :search, value: params[:search], class: "form-control", placeholder: "キーワード" %>
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+          <div>
+            <%= tag.label do %>
+              <%= tag.check_box checked: params[:tag_ids]&.map(&:to_i)&.include?(tag.object.id) %>
+            <% end %>
+            <%= tag.object.name%>
+          </div>
+        <% end %>
+        <%= f.submit "Search" ,:username => nil, class: "button is-info"%>
       <% end %>
-      <%= tag.object.name%>
     </div>
-  <% end %>
-  <%= f.submit "Search" ,:username => nil, class: "button is-info"%>
-<% end %>
-
-<% @fitness_gyms.each do |fitness_gym| %>
-　<p><%= link_to fitness_gym.name, fitness_gym_path(fitness_gym) %></p>
-  <p><%= fitness_gym.content %></p>
-  <p>Tags: <%= fitness_gym.tags.pluck(:name).join(",") %></p>
-<% end %>
-
-<div class="container">
-  <div id="map" style="width: 100%; height: calc(100vh - 88px - 179px);"></div>
+  </div>
+  <div class="col-md-8 ">
+    <div id="map" style="width: 100%; height: calc(100vh - 88px - 179px);"></div>
+  </div>
 </div>
+
 
 <%= javascript_pack_tag 'fitness_gym', 'data-turbolinks-track': 'reload' %>

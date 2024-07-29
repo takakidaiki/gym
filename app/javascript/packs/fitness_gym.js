@@ -14,15 +14,15 @@ async function initMap() {
 
   // 地図の中心と倍率は公式から変更しています。
   map = new Map(document.getElementById("map"), {
-    center: { lat: 35.681236, lng: 139.767125 }, 
+    center: { lat: 35.681236, lng: 139.767125 },
     zoom: 15,
     mapTypeControl: false,
     mapId: "DEMO_MAP_ID", // 追記
   });
-  
+
   // 追記
   try {
-    
+
     const response = await fetch("/fitness_gyms.json");
     if (!response.ok) throw new Error('Network response was not ok');
 
@@ -35,29 +35,32 @@ async function initMap() {
       const name = item.name;
       const address = item.address;
       const content = item.content;
+      const fitness_gym_id = item.fitness_gym_id;
 
       const marker = new google.maps.marker.AdvancedMarkerElement ({
         position: { lat: latitude, lng: longitude },
         map,
         title: name,
+
         // 他の任意のオプションもここに追加可能
       });
-      
+
       const contentString = `
         <div class="information container p-0">
           <div>
             <h1 class="h4 font-weight-bold">${name}</h1>
             <p class="text-muted">${address}</p>
             <p class="lead">${content}</p>
+            <a href="/fitness_gyms/${fitness_gym_id}">詳細へ</a>
           </div>
         </div>
       `;
-      
+
       const infowindow = new google.maps.InfoWindow({
         content: contentString,
         ariaLabel: name,
       });
-      
+
       marker.addListener("click", () => {
           infowindow.open({
           anchor: marker,
@@ -68,8 +71,8 @@ async function initMap() {
   } catch (error) {
     console.error('Error fetching or processing fitness gyms:', error);
   }
-  
-  
+
+
 }
 
 initMap()

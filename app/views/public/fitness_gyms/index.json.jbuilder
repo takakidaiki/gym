@@ -1,7 +1,7 @@
 json.data do
   json.items do
     json.array!(@fitness_gyms) do |gym|
-      json.id gym.id
+      json.fitness_gym_id gym.id
       json.name gym.name
       json.content gym.content
       json.address gym.address
