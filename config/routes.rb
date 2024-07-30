@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
   }
-  
+
   devise_for :users, controllers: {
     sessions: 'public/sessions',
     registrations: 'public/registrations',
@@ -18,14 +18,13 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :fitness_gyms, only: [:show, :index, :create, :new] 
-    
+    resources :fitness_gyms, only: [:show, :index, :create, :new]
     resources :reviews do
       resources :review_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
     end
     get 'users/unsubscribe'
-   
+
     resources :users, only: [:show, :index, :edit, :update, :destroy]
   end
 

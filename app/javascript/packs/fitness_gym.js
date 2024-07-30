@@ -22,8 +22,7 @@ async function initMap() {
 
   // 追記
   try {
-
-    const response = await fetch("/fitness_gyms.json");
+    const response = await fetch("/fitness_gyms.json?"+ $("#search_form").serialize());
     if (!response.ok) throw new Error('Network response was not ok');
 
     const { data: { items } } = await response.json();

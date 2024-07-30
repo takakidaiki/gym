@@ -1,13 +1,16 @@
 class Public::FitnessGymsController < ApplicationController
   before_action :authenticate_user!, except: [:top, :about], unless: :admin_controller?
-  
+
   def index
-    
-    
+     @search_word = params[:search]
+
+
     respond_to do |format|
+
       format.html do
         @fitness_gyms = FitnessGym.includes(:gym_tags)
-        @fitness_gyms = @fitness_gyms.where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
+        @fitness_gyms = @fitness_gyms.where('name LIKE ?', "%#{@search_word}%") if @search_word.present?
+
         if params[:tag_ids].present? && params[:tag_ids].reject(&:blank?).any?
           @fitness_gyms = @fitness_gyms.where('gym_tags.tag_id': params[:tag_ids])
         end
@@ -16,7 +19,8 @@ class Public::FitnessGymsController < ApplicationController
       format.json do
         # こちらが地図で扱う内容
         @fitness_gyms = FitnessGym.includes(:gym_tags)
-        @fitness_gyms = @fitness_gyms.where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
+        @fitness_gyms = @fitness_gyms.where('name LIKE ?', "%#{@search_word}%") if @search_word.present?
+        #byebug
         if params[:tag_ids].present? && params[:tag_ids].reject(&:blank?).any?
           @fitness_gyms = @fitness_gyms.where('gym_tags.tag_id': params[:tag_ids])
         end
