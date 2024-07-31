@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/sessions'
   root to: "public/homes#top"
   get "/homes/about" => "public/homes#about", as: "about"
   devise_for :admin, skip: [:registrations, :password], controllers: {
@@ -24,7 +25,11 @@ Rails.application.routes.draw do
       resource :favorite, only: [:create, :destroy]
     end
     get 'users/unsubscribe'
-
+    
+    devise_scope :user do
+      post "users/guest_sign_in", to: "sessions#guest_sign_in"
+    end
+    
     resources :users, only: [:show, :index, :edit, :update, :destroy]
   end
 
