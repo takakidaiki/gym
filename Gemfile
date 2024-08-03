@@ -67,3 +67,5 @@ gem "net-imap"
 
 gem 'dotenv-rails'
 gem 'geocoder'
+
+gem 'active_hash'

@@ -35,6 +35,7 @@ async function initMap() {
       const address = item.address;
       const content = item.content;
       const fitness_gym_id = item.fitness_gym_id;
+      const genre_id = item.genre_id;
 
       const marker = new google.maps.marker.AdvancedMarkerElement ({
         position: { lat: latitude, lng: longitude },

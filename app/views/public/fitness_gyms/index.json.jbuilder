@@ -7,6 +7,7 @@ json.data do
       json.address gym.address
       json.latitude gym.latitude
       json.longitude gym.longitude
+      json.genre_id gym.genre_id
     end  
   end
 end

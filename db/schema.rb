@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_27_121536) do
+ActiveRecord::Schema.define(version: 2024_08_03_030156) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2024_07_27_121536) do
     t.string "address", default: "", null: false
     t.float "latitude", default: 0.0, null: false
     t.float "longitude", default: 0.0, null: false
+    t.integer "genre_id"
   end
 
   create_table "gym_tags", force: :cascade do |t|
@@ -76,6 +77,11 @@ ActiveRecord::Schema.define(version: 2024_07_27_121536) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "fitness_gym_id"
     t.integer "tag_id"
+  end
+
+  create_table "prefectures", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "publics", force: :cascade do |t|
@@ -107,6 +113,12 @@ ActiveRecord::Schema.define(version: 2024_07_27_121536) do
     t.string "title"
     t.float "star"
     t.integer "fitness_gym_id"
+  end
+
+  create_table "rides", force: :cascade do |t|
+    t.integer "ride_area", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "tags", force: :cascade do |t|
