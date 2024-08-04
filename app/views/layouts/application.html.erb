@@ -16,8 +16,10 @@
     <header class="shadow-sm">
       <% if user_signed_in? %>
         <%= render 'layouts/user_menu_bar' %>
-      <% else %>
+      <% elsif admin_signed_in? %>
         <%= render 'layouts/admin_menu_bar' %>
+      <% else %>
+        <%= render 'layouts/general_user_menu_bar' %>
       <% end %>
     </header>
     <% flash.each do |message_type, message| %>

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :users, only: [:destroy]
     resources :tags, except: [:show]
     resources :fitness_gyms, except: [:show]
+    resources :reviews, only: [:index, :destroy]
   end
 
   scope module: :public do
