@@ -39,7 +39,7 @@ class Admin::FitnessGymsController < ApplicationController
   def destroy
     fitness_gym = FitnessGym.find(params[:id])
     fitness_gym.destroy
-    redirect_to '/admin/fitness_gyms'
+    redirect_to admin_fitness_gyms_path
   end
   
   private

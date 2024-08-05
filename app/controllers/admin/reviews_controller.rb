@@ -6,7 +6,7 @@ class Admin::ReviewsController < ApplicationController
     end
 
     def destroy
-      review = Review.find(params[:id])
+      review = Review.find(params[:id])# 下記をfitness_gym_idにした理由はreview(params[id])と同じ書き方にしてしまうとfitness_gymも同じidだと思われてしまうから
       fitness_gym = FitnessGym.find(params[:fitness_gym_id])
       review.destroy
       redirect_to admin_fitness_gym_path(fitness_gym)

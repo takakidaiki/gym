@@ -3,5 +3,9 @@
   <%= fitness_gym.content %>
   <%= link_to 'ジム詳細', admin_fitness_gym_path(fitness_gym) %>
   <%= link_to '編集', edit_admin_fitness_gym_path(fitness_gym) %>
-  <%= link_to '削除', admin_fitness_gyms_path(fitness_gym), method: :delete %>
+  <%= link_to '削除', admin_fitness_gym_path(fitness_gym), method: :delete %>
 <% end %>
+
+<div class="my-5">
+  <%= link_to 'ジム登録', new_admin_fitness_gym_path %>
+</div>

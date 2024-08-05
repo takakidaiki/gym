@@ -68,10 +68,10 @@
           readOnly: true
         });
       </script>
-      <p>投稿ユーザー画像：<%= image_tag review.user.get_profile_image(100,100) %></p>
+      <%= image_tag review.user.get_profile_image(50,50) %>
+      <p>ユーザーネーム：<%= link_to review.user.name, user_path(review.user) %></p>
       <p>タイトル: <%= link_to review.title, review_path(review.id) %></p>
       <p>説明：<%= review.content %></p>
-      <p>ユーザーネーム：<%= link_to review.user.name, user_path(review.user) %></p>
       <% if review.user == current_user %>
         <%= link_to "編集", edit_review_path(review) %>
       <% end %>
