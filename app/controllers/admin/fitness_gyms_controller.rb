@@ -8,6 +8,11 @@ class Admin::FitnessGymsController < ApplicationController
   def index
     @fitness_gyms = FitnessGym.all
   end
+  
+  def show
+    @fitness_gym = FitnessGym.find(params[:id])
+    @reviews = @fitness_gym.reviews
+  end
 
   def edit
     @fitness_gym = FitnessGym.find(params[:id])

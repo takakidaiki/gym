@@ -15,8 +15,9 @@ Rails.application.routes.draw do
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:destroy]
     resources :tags, except: [:show]
-    resources :fitness_gyms, except: [:show]
-    resources :reviews, only: [:index, :destroy]
+    resources :fitness_gyms do
+    resources :reviews, only: [:show, :destroy]
+    end
   end
 
   scope module: :public do

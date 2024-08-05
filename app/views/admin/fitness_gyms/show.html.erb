@@ -1,0 +1,34 @@
+<div class="container">
+  <h1><%= @fitness_gym.name %></h1>
+  <div class="mb-2 row">
+    <span><i class="fa-solid fa-location-dot"></i> <%= @fitness_gym.address %></span>
+  </div>
+  <h4 class="mb-5">
+    <%= @fitness_gym.content %>
+  </h4>
+
+  <% if @reviews.any? %>
+    <% @reviews.each do |review| %>
+      <div class="<%= review.id %>">
+        <div id="post_raty_<%= review.id %>"></div>
+        <script>
+          // scriptファイルをどのidの部分に配置するかを指定
+          document.querySelector('#post_raty_<%= review.id %>').innerHTML = '';
+          raty(document.querySelector('#post_raty_<%= review.id %>'),
+          {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            score: "<%= review.star %>",
+            readOnly: true
+          });
+        </script>
+        <p>投稿ユーザー画像：<%= image_tag review.user.get_profile_image(100,100) %></p>
+        <p>タイトル: <%= review.title %></p>
+        <p>説明：<%= review.content %></p>
+        <p>ユーザーネーム：<%= review.user.name %></p>
+        <%= link_to 'レビュー詳細', admin_fitness_gym_review_path(review.fitness_gym,review) %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
