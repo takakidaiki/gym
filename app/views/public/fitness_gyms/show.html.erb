@@ -45,7 +45,7 @@
         </script>
 
         <div class="mb-2">
-          <%= f.submit "review", class: "btn btn-primary" %>
+          <%= f.submit "review", class: "btn btn-primary mb-5" %>
         </div>
       <% end %>
 
@@ -53,6 +53,7 @@
 
 
 <% if @reviews.any? %>
+<h3>レビュー欄</h3>
   <% @reviews.each do |review| %>
     <div class="<%= review.id %>">
       <div id="post_raty_<%= review.id %>"></div>

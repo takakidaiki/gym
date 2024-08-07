@@ -44,7 +44,7 @@ class Public::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     if @review.update(review_params)
       flash[:notice] = "You have updated review successfully."
-      redirect_to fitness_gym_path(@review.fitness_gym_id)
+      redirect_to admin_fitness_gym_path(@review.fitness_gym_id)
     else
       render :edit
     end

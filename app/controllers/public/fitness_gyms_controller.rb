@@ -44,6 +44,8 @@ class Public::FitnessGymsController < ApplicationController
     redirect_to fitness_gym_path
   end
 
+  private
+
   def fitness_gym_params
       params.require(:fitness_gym).permit(:address, :genre_id, tag_ids: [])
   end
