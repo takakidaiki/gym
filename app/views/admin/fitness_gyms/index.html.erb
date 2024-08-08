@@ -1,12 +1,30 @@
-<% @fitness_gyms.each do |fitness_gym| %>
-  <%= fitness_gym.name %>
-  <%= fitness_gym.content %>
-  <%= link_to 'ジム詳細', admin_fitness_gym_path(fitness_gym) %>
-  <%= link_to '編集', edit_admin_fitness_gym_path(fitness_gym) %>
-  <%= link_to '削除', admin_fitness_gym_path(fitness_gym), method: :delete %>
-<% end %>
-
-<div class="my-5">
-  <%= link_to 'ジム登録', new_admin_fitness_gym_path %>
-  <%= link_to 'タグ登録', new_admin_tag_path %>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <h3>フィットネスジム一覧</h3>
+    <table class="table table-hover table-inverse">
+      <thead>
+        <tr>
+          <th>ジム名</th>
+          <th>説明</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <% @fitness_gyms.each do |fitness_gym| %>
+      <tbody>
+        <tr>
+            <%= fitness_gym.name %>
+            <%= fitness_gym.content %>
+            <%= link_to 'ジム詳細', admin_fitness_gym_path(fitness_gym) %>
+            <%= link_to '編集', edit_admin_fitness_gym_path(fitness_gym) %>
+            <%= link_to '削除', admin_fitness_gym_path(fitness_gym), method: :delete %>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+  
+  <div class="my-5">
+    <%= link_to 'ジム登録', new_admin_fitness_gym_path %>
+    <%= link_to 'タグ登録', new_admin_tag_path %>
+  </div>
 </div>

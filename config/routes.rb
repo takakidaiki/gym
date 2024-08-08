@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :users, only: [:destroy]
     resources :tags, except: [:show]
     resources :fitness_gyms do
-      resources :reviews, only: [:show, :edit, :destroy, :update]
+      resources :reviews, only: [:show, :destroy]
     end
   end
 

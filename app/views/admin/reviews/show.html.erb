@@ -1,25 +1,34 @@
-  <div id="post_raty"></div>
-  <script>
-    $(document).on('turbolinks:load', function() {
-      // scriptファイルをどのidの部分に配置するかを指定
-      document.querySelector('#post_raty').innerHTML = '';
-      raty(document.querySelector('#post_raty'),
-        {
-          starOn: "<%= asset_path('star-on.png') %>",
-          starOff: "<%= asset_path('star-off.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
-          half: true,
-          readOnly: true,
-          score: "<%= @review.star %>",
-        }
-      );
-    });
-  </script>
-  <p>投稿ユーザー画像：<%= image_tag @review.user.get_profile_image(50,50) %></p>
-  <p>タイトル：<%= @review.title %></p>
-  <p>説明：<%= @review.content %></p>
-  <p>ユーザーネーム：<%= @review.user.name %></p>
-  <p>投稿日：<%= @review.created_at.strftime('%Y/%m/%d') %></p>
-
-  <%= link_to '編集', edit_admin_fitness_gym_review_path(@review.fitness_gym,@review) %>
-  <%= link_to '削除', admin_fitness_gym_review_path(@review.fitness_gym,@review), method: :delete %>
+<div class="row no-gutters">
+  <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+    <h5 class="text-dark bg-light p-4 mb-0">レビュー詳細</h5>
+    <div class="form-body p-4">  
+      <div id="post_raty"></div>
+      <script>
+        $(document).on('turbolinks:load', function() {
+          // scriptファイルをどのidの部分に配置するかを指定
+          document.querySelector('#post_raty').innerHTML = '';
+          raty(document.querySelector('#post_raty'),
+            {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              half: true,
+              readOnly: true,
+              score: "<%= @review.star %>",
+            }
+          );
+        });
+      </script>
+      <div class="mb-3 my-3">
+        <%= image_tag @review.user.get_profile_image(100,100) %>
+      </div>
+      <p>ユーザーネーム：<%= @review.user.name %></p>
+      <p>タイトル：<%= @review.title %></p>
+      <p>説明：<%= @review.content %></p>
+      <p>投稿日：<%= @review.created_at.strftime('%Y/%m/%d') %></p>
+    
+      <%= link_to '削除', admin_fitness_gym_review_path(@review.fitness_gym,@review), method: :delete %>
+    </div>
+  </div>
+</div>
+  
