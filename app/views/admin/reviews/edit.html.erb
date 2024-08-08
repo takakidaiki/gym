@@ -11,7 +11,7 @@
         </ul>
       <% end %>
       
-      <%= form_with model: @review do |f| %>
+      <%= form_with model: @review, url: admin_fitness_gym_review_path, method: :patch do |f| %>
       
         <h6>タイトル</h6>
         <%= f.text_field :title, class: " mb-3 form-control col-6" %>
