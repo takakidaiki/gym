@@ -6,17 +6,29 @@
         <tr>
           <th>ジム名</th>
           <th>説明</th>
-          <th colspan="3"></th>
+          <th></th>
+          <th></th>
+          <th colspan="5"></th>
         </tr>
       </thead>
       <% @fitness_gyms.each do |fitness_gym| %>
       <tbody>
         <tr>
+          <td>
             <%= fitness_gym.name %>
+          </td>
+          <td>
             <%= fitness_gym.content %>
+          </td>
+          <td>
             <%= link_to 'ジム詳細', admin_fitness_gym_path(fitness_gym) %>
+          </td>
+          <td>
             <%= link_to '編集', edit_admin_fitness_gym_path(fitness_gym) %>
+          </td>
+          <td>
             <%= link_to '削除', admin_fitness_gym_path(fitness_gym), method: :delete %>
+          </td>
         </tr>
       </tbody>
       <% end %>
