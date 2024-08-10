@@ -11,11 +11,15 @@ let map;
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
   const {AdvancedMarkerElement} = await google.maps.importLibrary("marker")
+  let latitude = document.getElementById('latitude').innerHTML;
+  let longitude = document.getElementById('longitude').innerHTML;
+  console.log("latitude:"+latitude);
 
   // 地図の中心と倍率は公式から変更しています。
   map = new Map(document.getElementById("map"), {
-    center: { lat: 35.681236, lng: 139.767125 },
-    zoom: 15,
+    //center: { lat: 35.681236, lng: 139.767125 },
+    center: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
+    zoom: 10,
     mapTypeControl: false,
     mapId: "DEMO_MAP_ID", // 追記
   });

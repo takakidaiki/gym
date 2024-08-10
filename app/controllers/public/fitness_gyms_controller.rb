@@ -13,6 +13,14 @@ class Public::FitnessGymsController < ApplicationController
           @fitness_gyms = @fitness_gyms.where('gym_tags.tag_id': params[:tag_ids])
         end
         @reviews = Review.all
+        @latitude = 35.681236
+        @longitude = 139.767125
+        if params[:genre_id].present? &&params[:genre_id].to_i>0
+          @result = Geocoder.search(Genre.find(params[:genre_id]).name)
+          @latitude = @result[0].data["geometry"]["location"]["lat"]
+          @longitude = @result[0].data["geometry"]["location"]["lng"]
+          @fitness_gyms = @fitness_gyms.where('address LIKE ?', "%#{Genre.find(params[:genre_id]).name}%")
+        end
       end
       format.json do
         # こちらが地図で扱う内容
@@ -20,6 +28,15 @@ class Public::FitnessGymsController < ApplicationController
         @fitness_gyms = @fitness_gyms.where('name LIKE ?', "%#{@search_word}%") if @search_word.present?
         if params[:tag_ids].present? && params[:tag_ids].reject(&:blank?).any?
           @fitness_gyms = @fitness_gyms.where('gym_tags.tag_id': params[:tag_ids])
+        end
+        @latitude = 35.681236
+        @longitude = 139.767125
+       
+        if params[:genre_id].present? &&params[:genre_id].to_i>0
+          @result = Geocoder.search(Genre.find(params[:genre_id]).name)
+          @latitude = @result[0].data["geometry"]["location"]["lat"]
+          @longitude = @result[0].data["geometry"]["location"]["lng"]
+          @fitness_gyms = @fitness_gyms.where('address LIKE ?', "%#{Genre.find(params[:genre_id]).name}%")
         end
       end
     end

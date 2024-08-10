@@ -3,7 +3,7 @@
     <h5 class="text-dark bg-light p-4 mb-0">検索</h5>
     <div class="form-body p-4">
       <%= form_with(url: fitness_gyms_path, method: :get, id:"search_form") do |f| %>
-        <%= f.collection_select(:genre_id, Genre.all, :id, :name, {}, {class:"genre-select, mb-3"}) %>
+        <%= f.collection_select(:genre_id, Genre.all, :id, :name, {selected: params[:genre_id]}, {class:"genre-select, mb-3"}) %>
         <%= f.text_field :search, value: params[:search], class: "form-control, mb-3", placeholder: "キーワード" %>
         <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
           <div>
@@ -21,6 +21,7 @@
     <div id="map" style="width: 100%; height: calc(100vh - 88px - 179px);"></div>
   </div>
 </div>
-
+<div id="latitude"><%= @latitude %></div>
+<div id="longitude"><%= @longitude %></div>
 
 <%= javascript_pack_tag 'fitness_gym', 'data-turbolinks-track': 'reload' %>
