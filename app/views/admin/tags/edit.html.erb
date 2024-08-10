@@ -1,7 +1,16 @@
-<%= form_with model: @tag,url: admin_tag_path, method: :patch do |tag| %>
-  <h4>tag</h4>
-  <%= tag.text_field :name %>
-  <%= tag.submit '投稿' %>
-  <%= link_to '一覧', admin_tags_path %>
-  <%= link_to '削除', admin_tag_path(@tag), method: :delete %>
-<% end %>
+<div class="row no-gutters">
+  <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+    <h5 class="text-dark bg-light p-4 mb-0">タグ編集</h5>
+    <div class="form-body p-4">
+      <%= form_with model: @tag,url: admin_tag_path, method: :patch do |tag| %>
+        <h4>tag</h4>
+        <div class="my-3">
+          <%= tag.text_field :name %>
+          <%= tag.submit '投稿' %>
+          <%= link_to '一覧', admin_tags_path %>
+          <%= link_to '削除', admin_tag_path(@tag), method: :delete %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
