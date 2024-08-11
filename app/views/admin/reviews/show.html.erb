@@ -28,6 +28,7 @@
       <p>投稿日：<%= @review.created_at.strftime('%Y/%m/%d') %></p>
     
       <%= link_to '削除', admin_fitness_gym_review_path(@review.fitness_gym,@review), method: :delete %>
+      <%= link_to 'ジム詳細', admin_fitness_gym_path(@review.fitness_gym) %>
     </div>
   </div>
 </div>

@@ -30,7 +30,7 @@ class Admin::FitnessGymsController < ApplicationController
   def update
     @fitness_gym = FitnessGym.find(params[:id])
     if @fitness_gym.update(fitness_gym_params)
-      redirect_to edit_admin_fitness_gym_path(@fitness_gym)
+      redirect_to admin_fitness_gyms_path(@fitness_gyms)
     else
       render :edit
     end
