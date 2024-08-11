@@ -3,9 +3,14 @@
     <h5 class="text-dark bg-light p-4 mb-0">プロフィール</h5>
     <div class="form-body p-4">
       <div>
-        <%= image_tag @user.get_profile_image(100,100) %>
-        <h3>name
+        <div class="mb-3">
+          <%= image_tag @user.get_profile_image(100,100) %>
+        </div>
+        <h3>名前
           <%= @user.name %>
+        </h3>
+        <h3>コメント
+          <%= @user.introduction %>
         </h3>
         <% unless @user.guest_user? %>
         <div class="row">

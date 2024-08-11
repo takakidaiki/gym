@@ -31,7 +31,6 @@ class Public::FitnessGymsController < ApplicationController
         end
         @latitude = 35.681236
         @longitude = 139.767125
-       
         if params[:genre_id].present? &&params[:genre_id].to_i>0
           @result = Geocoder.search(Genre.find(params[:genre_id]).name)
           @latitude = @result[0].data["geometry"]["location"]["lat"]
