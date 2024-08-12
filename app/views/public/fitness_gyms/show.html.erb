@@ -52,66 +52,83 @@
 
 
 
-<% if @reviews.any? %>
-<h3>レビュー欄</h3>
-  <% @reviews.each do |review| %>
-    <div class="<%= review.id %>">
-      <div id="post_raty_<%= review.id %>"></div>
-      <script>
-        // scriptファイルをどのidの部分に配置するかを指定
-        document.querySelector('#post_raty_<%= review.id %>').innerHTML = '';
-        raty(document.querySelector('#post_raty_<%= review.id %>'),
-        {
-          starOn: "<%= asset_path('star-on.png') %>",
-          starOff: "<%= asset_path('star-off.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
-          score: "<%= review.star %>",
-          readOnly: true
-        });
-      </script>
-      <%= image_tag review.user.get_profile_image(50,50) %>
-      <p>ユーザーネーム：<%= link_to review.user.name, user_path(review.user) %></p>
-      <p>タイトル: <%= review.title %></p>
-      <p>説明：<%= review.content %></p>
-      <% if review.user == current_user %>
-        <%= link_to "編集", edit_review_path(review) %>
-      <% end %>
-      <% if review.user == current_user %>
-        <%= link_to "削除", review_path(review), method: :delete %>
-      <% end %>
-      <% if review.favorited_by?(current_user) %>
-        <p>
-          <%= link_to review_favorite_path(review), method: :delete do %>
-            ♥<%= review.favorites.count %> いいね
-          <% end %>
-        </p>
-        <% else %>
-        <p>
-          <%= link_to review_favorite_path(review), method: :post do %>
-            ♡<%= review.favorites.count %> いいね
-          <% end %>
-        </p>
-      <% end %>
-    </div>
-
-    <div>
-      <p>コメント件数：<%= review.review_comments.count %></p>
-      <% review.review_comments.each do |review_comment| %>
-        <p><%= image_tag review_comment.user.get_profile_image(30,30) %></p>
-        <%= review_comment.user.name %>
-        <%= review_comment.created_at.strftime('%Y/%m/%d') %><%= review_comment.comment %>
-        <% if review_comment.user == current_user %>
-          <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), method: :delete %>
+  <% if @reviews.any? %>
+  <h3>レビュー欄</h3>
+    <% @reviews.each do |review| %>
+      <div class="<%= review.id %>">
+        <div id="post_raty_<%= review.id %>"></div>
+        <script>
+          // scriptファイルをどのidの部分に配置するかを指定
+          document.querySelector('#post_raty_<%= review.id %>').innerHTML = '';
+          raty(document.querySelector('#post_raty_<%= review.id %>'),
+          {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            score: "<%= review.star %>",
+            readOnly: true
+          });
+        </script>
+        <div class="row">
+          <div class="mb-2 mr-2">
+            <%= image_tag review.user.get_profile_image(50,50) %>
+          </div>
+          <div>
+            <p>ユーザーネーム：<%= link_to review.user.name, user_path(review.user) %></p>
+          </div>
+        </div>
+        <p>タイトル: <%= review.title %></p>
+        <p>説明：<%= review.content %></p>
+        <% if review.user == current_user %>
+          <%= link_to "編集", edit_review_path(review) %>
         <% end %>
-      <% end %>
-    </div>
-    <div>
-      <%= form_with model: @review_comment,url: review_review_comments_path(review.id) do |f| %>
-        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-        <%= f.submit "送信する" %>
-      <% end %>
-    </div>
+        <% if review.user == current_user %>
+          <%= link_to "削除", review_path(review), method: :delete %>
+        <% end %>
+        <% if review.favorited_by?(current_user) %>
+          <p>
+            <%= link_to review_favorite_path(review), method: :delete do %>
+              ♥<%= review.favorites.count %> いいね
+            <% end %>
+          </p>
+          <% else %>
+          <p>
+            <%= link_to review_favorite_path(review), method: :post do %>
+              ♡<%= review.favorites.count %> いいね
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+  
+      <div>
+        <p>コメント件数：<%= review.review_comments.count %></p>
+        <% review.review_comments.each do |review_comment| %>
+        <div class="row">
+          <div class="mb-2">
+            <%= image_tag review_comment.user.get_profile_image(30,30) %>
+          </div>
+          <div class="mr-2 ml-2">
+            <%= review_comment.user.name %>
+          </div>
+          <div class="mr-2">
+            <%= review_comment.created_at.strftime('%Y/%m/%d') %>
+          </div>
+          <div class="mr-2">
+            <%= review_comment.comment %>
+          </div>
+          <% if review_comment.user == current_user %>
+            <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), method: :delete %>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+      <div>
+        <%= form_with model: @review_comment,url: review_review_comments_path(review.id) do |f| %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+          <%= f.submit "送信する" %>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
 
 </div>
