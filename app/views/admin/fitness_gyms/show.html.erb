@@ -23,10 +23,14 @@
             readOnly: true
           });
         </script>
-        <div class="mb-3 my-3">
-          <%= image_tag review.user.get_profile_image(100,100) %>
+        <div class="row">
+          <div class="mb-3 my-3">
+            <%= image_tag review.user.get_profile_image(50,50) %>
+          </div>
+          <div class="my-4 ml-3">
+            <p>ユーザーネーム：<%= review.user.name %></p>
+          </div>
         </div>
-        <p>ユーザーネーム：<%= review.user.name %></p>
         <p>タイトル: <%= review.title %></p>
         <p>説明：<%= review.content %></p>
         <%= link_to 'レビュー詳細', admin_fitness_gym_review_path(review.fitness_gym,review) %>
