@@ -11,8 +11,8 @@ let map;
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
   const {AdvancedMarkerElement} = await google.maps.importLibrary("marker")
-  let latitude = document.getElementById('latitude').innerHTML;
-  let longitude = document.getElementById('longitude').innerHTML;
+  let latitude = document.getElementById('map').dataset.latitude;
+  let longitude = document.getElementById('map').dataset.longitude;
   console.log("latitude:"+latitude);
 
   // 地図の中心と倍率は公式から変更しています。

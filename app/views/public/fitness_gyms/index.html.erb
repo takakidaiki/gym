@@ -18,10 +18,8 @@
     </div>
   </div>
   <div class="col-md-8 ">
-    <div id="map" style="width: 100%; height: calc(100vh - 88px - 179px);"></div>
+    <div id="map" style="width: 100%; height: calc(100vh - 88px - 179px);" data-latitude="<%= @latitude %>" data-longitude="<%= @longitude %>"></div>
   </div>
 </div>
-<div id="latitude"><%= @latitude %></div>
-<div id="longitude"><%= @longitude %></div>
 
 <%= javascript_pack_tag 'fitness_gym', 'data-turbolinks-track': 'reload' %>
