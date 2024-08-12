@@ -37,7 +37,7 @@ class Public::ReviewsController < ApplicationController
   def destroy
     review = Review.find(params[:id])
     review.destroy
-    redirect_to '/fitness_gyms'
+    redirect_to fitness_gym_path(review.fitness_gym_id)
   end
 
   def update

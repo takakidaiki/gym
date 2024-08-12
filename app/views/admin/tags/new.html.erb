@@ -2,6 +2,14 @@
   <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
     <h5 class="text-dark bg-light p-4 mb-0">タグ投稿</h5>
     <div class="form-body p-4">
+      <% if @tag.errors.any? %>
+        <%= @tag.errors.count %>errors prohibited this obj from being saved:
+        <ul>
+          <% @tag.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
       <%= form_with model: @tag,url: admin_tags_path do |f| %>
         <%= f.text_field :name %>
         <%= f.submit '投稿' %>

@@ -71,7 +71,7 @@
       </script>
       <%= image_tag review.user.get_profile_image(50,50) %>
       <p>ユーザーネーム：<%= link_to review.user.name, user_path(review.user) %></p>
-      <p>タイトル: <%= link_to review.title, review_path(review.id) %></p>
+      <p>タイトル: <%= review.title %></p>
       <p>説明：<%= review.content %></p>
       <% if review.user == current_user %>
         <%= link_to "編集", edit_review_path(review) %>

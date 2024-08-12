@@ -42,7 +42,10 @@
         </script>
       
         <%= f.submit '保存' %>
+        <%= link_to '削除', review_path(@review), method: :delete %>
+        <%= link_to 'ジム詳細', fitness_gym_path(@review.fitness_gym) %>
       <% end %>
+      
     </div>
   </div>
 </div>

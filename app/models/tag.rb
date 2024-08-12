@@ -1,6 +1,8 @@
 class Tag < ApplicationRecord
   has_many :gym_tags, dependent: :destroy, foreign_key: 'tag_id'
   has_many :fitness_gyms, through: :gym_tags
+  
+  validates :name, presence: true
 
   scope :merge_fitness_gyms, -> (tags){ }
   
