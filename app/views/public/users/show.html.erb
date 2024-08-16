@@ -14,7 +14,9 @@
         </h3>
         <% unless @user.guest_user? %>
         <div class="row">
-          <%= link_to "",edit_user_path(@user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{@user.id} mb-4 my-4" %>
+          <%= link_to edit_user_path(@user),class: "btn btn-outline-secondary btn-block edit_user_#{@user.id} mb-4 my-4" do %>
+            <i class="fa-solid fa-user-gear"></i>
+          <% end %>
         </div>
         <% end %>
         <% if @user == current_user %>

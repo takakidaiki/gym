@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :fitness_gyms, only: [:show, :index, :create, :new]
+    resources :fitness_gyms, only: [:show, :index, :create,]
     resources :reviews do
       resources :review_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]

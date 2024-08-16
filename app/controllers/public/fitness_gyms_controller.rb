@@ -49,11 +49,6 @@ class Public::FitnessGymsController < ApplicationController
     @review.user_id = current_user.id
   end
 
-  def new
-    @fitness_gym = FitnessGym.new
-    @tags = Tag.all
-  end
-
   def create
     @fitness_gym = FitnessGym.new(fitness_gym_params)
     @fitness_gym.save
