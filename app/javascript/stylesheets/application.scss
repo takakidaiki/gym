@@ -1,1 +1,17 @@
 @use '~bootstrap/scss/bootstrap';
+
+.test {
+  color: red;
+}
+
+@media screen and (max-width: 400px) {
+  .app-title {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .app-title {
+    font-size: 40px;
+  }
+}
