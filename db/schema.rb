@@ -66,10 +66,10 @@ ActiveRecord::Schema.define(version: 2024_08_11_050254) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
+    t.integer "genre_id"
     t.string "address", default: "", null: false
     t.float "latitude", default: 0.0, null: false
     t.float "longitude", default: 0.0, null: false
-    t.integer "genre_id"
   end
 
   create_table "gym_tags", force: :cascade do |t|
