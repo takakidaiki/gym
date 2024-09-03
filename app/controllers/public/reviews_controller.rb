@@ -1,10 +1,6 @@
 class Public::ReviewsController < ApplicationController
   before_action :authenticate_user!, except: [:top, :about], unless: :admin_controller?
 
-  def new
-    @review = Review.new
-  end
-
   def create
     @review = Review.new(review_params)
     @review.user_id = current_user.id
@@ -19,10 +15,6 @@ class Public::ReviewsController < ApplicationController
       @review.user_id = current_user.id
       render "public/fitness_gyms/show"
     end
-  end
-
-  def index
-    @reviews = Review.all
   end
 
   def show
