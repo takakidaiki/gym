@@ -6,8 +6,8 @@ class Admin::ReviewsController < ApplicationController
     end
 
     def destroy
-      review = Review.find(params[:id])#reviewでfitness_gym_idというカラムを持っているので下記のような書き方ができる
-      fitness_gym = FitnessGym.find(params[:fitness_gym_id])
+      review = Review.find(params[:id])
+      fitness_gym = FitnessGym.find(params[:fitness_gym_id])#reviewでfitness_gym_idというカラムを持っているので下記のような書き方ができる
       review.destroy
       redirect_to admin_fitness_gym_path(fitness_gym)
     end
