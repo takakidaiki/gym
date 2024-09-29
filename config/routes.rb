@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    get 'dashboards', to: 'dashboards#index'
-    resources :users, only: [:destroy]
+    get 'users', to: 'users#index'
+    patch 'users/:id/withdraw',to: "users#withdraw", as: "users_withdraw"
     resources :tags, except: [:show]
     resources :fitness_gyms do
       resources :reviews, only: [:show, :destroy]
@@ -21,18 +21,19 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :fitness_gyms, only: [:show, :index, :create,]
+    resources :fitness_gyms, only: [:show, :index, :create]
     resources :reviews do
       resources :review_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
     end
     get 'users/unsubscribe'
+    patch 'users/withdraw'
     
     devise_scope :user do
       post "users/guest_sign_in", to: "sessions#guest_sign_in"
     end
     
-    resources :users, only: [:show, :edit, :update, :destroy]
+    resources :users, only: [:show, :edit, :update]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

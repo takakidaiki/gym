@@ -14,6 +14,10 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { minimum: 2, maximum: 20 }
   
+  def active_for_authentication?
+    super && (self.is_deleted == false)
+  end
+  
   GUEST_USER_EMAIL = "guest@example.com"
 
   def self.guest

@@ -18,6 +18,13 @@ class Public::UsersController < ApplicationController
   def unsubscribe
     @user = User.find(params[:user_id])
   end
+  
+  def withdraw
+    @user = current_user
+    @user.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
+  end
 
   def destroy
     @user = User.find(params[:id])
