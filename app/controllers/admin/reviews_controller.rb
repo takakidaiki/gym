@@ -1,5 +1,10 @@
 class Admin::ReviewsController < ApplicationController
   before_action :authenticate_admin!
+    def index
+      @reviews = Review.all
+      @fitness_gym = @review.fitness_gym
+    end
+  
     def show
       @review = Review.find(params[:id])
       @fitness_gym = @review.fitness_gym
